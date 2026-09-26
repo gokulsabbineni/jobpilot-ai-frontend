@@ -3578,3 +3578,34 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+
+.user-resume-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.user-resume-delete-button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #f0b4b4;
+  border-radius: 10px;
+  background: #fff;
+  color: #b42318;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.user-resume-delete-button:hover:not(:disabled) {
+  background: #fff5f4;
+  border-color: #e88d88;
+}
+
+.user-resume-delete-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
