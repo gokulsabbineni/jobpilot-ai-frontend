@@ -450,9 +450,7 @@ export default function Preferences() {
                   }
                 />
 
-                <span className="user-option-check">
-                  ✓
-                </span>
+                <span className="user-option-check" aria-hidden="true">OK</span>
 
                 <span className="user-option-content">
                   <strong>
@@ -486,9 +484,7 @@ export default function Preferences() {
                   }
                 />
 
-                <span className="user-option-check">
-                  ✓
-                </span>
+                <span className="user-option-check" aria-hidden="true">OK</span>
 
                 <span className="user-option-content">
                   <strong>
@@ -563,9 +559,7 @@ export default function Preferences() {
                           )
                         }
                         aria-label={`Remove ${title}`}
-                      >
-                        ×
-                      </button>
+                       aria-label="Remove">×</button>
                     </div>
                   )
                 )}
@@ -637,9 +631,7 @@ export default function Preferences() {
                           )
                         }
                         aria-label={`Remove ${location}`}
-                      >
-                        ×
-                      </button>
+                       aria-label="Remove">×</button>
                     </div>
                   )
                 )}
