@@ -370,7 +370,7 @@ export default function Preferences() {
           onClick={loadPreferences}
           disabled={saving}
         >
-          ↻ Refresh
+          Refresh
         </button>
       </div>
 
@@ -412,7 +412,7 @@ export default function Preferences() {
             <div className="user-card-header">
               <div>
                 <div className="user-card-icon">
-                  ▣
+                  FT
                 </div>
               </div>
 
