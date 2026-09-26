@@ -128,6 +128,18 @@ export default function Agent() {
           result.applications_made ||
           0,
 
+        applications_submitted:
+          result.applications_submitted ??
+          0,
+
+        applications_action_required:
+          result.applications_action_required ??
+          0,
+
+        applications_failed:
+          result.applications_failed ??
+          0,
+
         started_at:
           result.started_at ||
           null,
