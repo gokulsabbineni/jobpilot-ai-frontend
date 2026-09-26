@@ -172,6 +172,17 @@ export async function rejectUser(
   );
 }
 
+export async function approveUserAgain(
+  userId: number
+) {
+  return apiRequest(
+    `/admin/users/${userId}/approve`,
+    {
+      method: "POST",
+    }
+  );
+}
+
 export async function getAdminApplications(): Promise<
   AdminApplication[]
 > {
