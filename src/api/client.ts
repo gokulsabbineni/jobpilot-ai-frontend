@@ -1,22 +1,45 @@
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8080";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  "http://localhost:8080/api";
 
-export async function api<T>(path: string, options: RequestInit = {}): Promise<T> {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {}),
-    },
-  });
+export async function apiRequest<T>(
+  path: string,
+  options: RequestInit = {}
+): Promise<T> {
+  const token = localStorage.getItem("jobpilot_token");
 
-  if (!response.ok) {
-    throw new Error(`API request failed: ${response.status}`);
+  const headers = new Headers(options.headers);
+
+  headers.set("Content-Type", "application/json");
+
+  if (token) {
+    headers.set("Authorization", `Bearer ${token}`);
   }
 
-  return response.json() as Promise<T>;
-}
+  const response = await fetch(
+    `${API_BASE_URL}${path}`,
+    {
+      ...options,
+      headers,
+    }
+  );
 
-// Replace mock service calls with these functions as your Go backend is implemented.
-// Example:
-// export const getApplications = () => api<Application[]>("/api/applications");
-// export const startAgent = () => api("/api/agent/start", { method: "POST" });
+  if (!response.ok) {
+    let message = "Request failed";
+
+    try {
+      const body = await response.json();
+      message = body.message || message;
+    } catch {
+      // Ignore invalid JSON response.
+    }
+
+    throw new Error(message);
+  }
+
+  if (response.status === 204) {
+    return undefined as T;
+  }
+
+  return response.json();
+}
