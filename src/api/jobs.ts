@@ -16,9 +16,13 @@ export interface UserJob {
   created_at?: string | null;
 }
 
-export async function getJobs(): Promise<UserJob[]> {
+export async function getJobs(search?: string): Promise<UserJob[]> {
+  const query = search?.trim()
+    ? `?search=${encodeURIComponent(search.trim())}`
+    : "";
+
   return apiRequest<UserJob[]>(
-    "/user/jobs"
+    `/user/jobs${query}`
   );
 }
 
