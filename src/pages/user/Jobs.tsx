@@ -33,16 +33,16 @@ export default function Jobs() {
     useState<number | null>(null);
 
   useEffect(() => {
-    loadJobs();
+    loadJobs("");
   }, []);
 
-  async function loadJobs() {
+  async function loadJobs(query = search) {
     try {
       setLoading(true);
       setError("");
 
       const result =
-        await getJobs();
+        await getJobs(query);
 
       setJobs(result);
     } catch (err) {
@@ -131,6 +131,10 @@ export default function Jobs() {
     ).toLocaleDateString();
   }
 
+  async function handleSearch() {
+    await loadJobs(search);
+  }
+
   const filteredJobs =
     jobs.filter((job) => {
       const searchValue =
@@ -195,7 +199,7 @@ export default function Jobs() {
 
         <button
           type="button"
-          onClick={loadJobs}
+          onClick={() => handleSearch()}
         >
           Refresh
         </button>
