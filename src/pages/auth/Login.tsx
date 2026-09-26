@@ -121,6 +121,10 @@ import {
             </button>
           </form>
   
+          <p className="auth-switch">
+            New to JobPilot AI? <a href="/register">Create an account</a>
+          </p>
+
           <div className="test-account">
             <strong>
               Local test accounts
