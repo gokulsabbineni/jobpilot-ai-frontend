@@ -1,12 +1,10 @@
 import { apiRequest } from "./client";
-import type {
-  AuthUser,
-  LoginResponse,
-} from "../types/auth";
+import type { AuthUser, LoginResponse } from "../types/auth";
 
 interface BackendLoginResponse {
   access_token: string;
   token_type: string;
+  user: AuthUser;
 }
 
 export async function login(
@@ -18,10 +16,7 @@ export async function login(
       "/auth/login",
       {
         method: "POST",
-        body: JSON.stringify({
-          email,
-          password,
-        }),
+        body: JSON.stringify({ email, password }),
       }
     );
 
@@ -30,8 +25,7 @@ export async function login(
     response.access_token
   );
 
-  const user =
-    await getCurrentUser();
+  const user = response.user || await getCurrentUser();
 
   return {
     token: response.access_token,
@@ -39,20 +33,32 @@ export async function login(
   };
 }
 
-export async function getCurrentUser(): Promise<AuthUser> {
+export async function register(
+  firstName: string,
+  lastName: string,
+  email: string,
+  password: string
+): Promise<AuthUser> {
   return apiRequest<AuthUser>(
-    "/auth/me"
+    "/auth/register",
+    {
+      method: "POST",
+      body: JSON.stringify({
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password,
+      }),
+    }
   );
 }
 
-export function saveSession(
-  response: LoginResponse
-) {
-  localStorage.setItem(
-    "jobpilot_token",
-    response.token
-  );
+export async function getCurrentUser(): Promise<AuthUser> {
+  return apiRequest<AuthUser>("/auth/me");
+}
 
+export function saveSession(response: LoginResponse) {
+  localStorage.setItem("jobpilot_token", response.token);
   localStorage.setItem(
     "jobpilot_user",
     JSON.stringify(response.user)
@@ -60,24 +66,13 @@ export function saveSession(
 }
 
 export function clearSession() {
-  localStorage.removeItem(
-    "jobpilot_token"
-  );
-
-  localStorage.removeItem(
-    "jobpilot_user"
-  );
+  localStorage.removeItem("jobpilot_token");
+  localStorage.removeItem("jobpilot_user");
 }
 
 export function getStoredUser(): AuthUser | null {
-  const raw =
-    localStorage.getItem(
-      "jobpilot_user"
-    );
-
-  if (!raw) {
-    return null;
-  }
+  const raw = localStorage.getItem("jobpilot_user");
+  if (!raw) return null;
 
   try {
     return JSON.parse(raw) as AuthUser;
