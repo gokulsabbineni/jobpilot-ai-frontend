@@ -20,10 +20,27 @@ export async function apiRequest<T>(
     headers.set("Authorization", `Bearer ${token}`);
   }
 
-  const response = await fetch(`${API_BASE_URL}${path}`, {
-    ...options,
-    headers,
-  });
+  let response: Response;
+
+  try {
+    response = await fetch(`${API_BASE_URL}${path}`, {
+      ...options,
+      headers,
+    });
+  } catch (error) {
+    const detail =
+      error instanceof Error ? error.message : "Network request failed.";
+
+    if (detail.toLowerCase().includes("failed to fetch") ||
+        detail.toLowerCase().includes("load failed") ||
+        detail.toLowerCase().includes("network")) {
+      throw new Error(
+        "Unable to reach the JobPilot AI server. Please refresh and try again. If this continues, the backend or CORS configuration needs attention."
+      );
+    }
+
+    throw error;
+  }
 
   if (!response.ok) {
     let message = `Request failed with status ${response.status}`;
