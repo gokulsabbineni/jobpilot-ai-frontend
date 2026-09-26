@@ -11,6 +11,7 @@ import AdminLayout from "./layouts/AdminLayout";
 import UserLayout from "./layouts/UserLayout";
 
 import Login from "./pages/auth/Login";
+import Register from "./pages/auth/Register";
 import AccountPending from "./pages/auth/AccountPending";
 
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -46,6 +47,11 @@ export default function App() {
       <Route
         path="/account-pending"
         element={<AccountPending />}
+      />
+
+      <Route
+        path="/register"
+        element={<Register />}
       />
 
 
