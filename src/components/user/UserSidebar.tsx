@@ -16,42 +16,42 @@ const navigationItems: NavigationItem[] = [
   {
     label: "Dashboard",
     path: "/dashboard",
-    icon: "🏠",
+    icon: "⌂",
   },
   {
     label: "My Resume",
     path: "/resume",
-    icon: "📄",
+    icon: "▣",
   },
   {
     label: "Job Preferences",
     path: "/preferences",
-    icon: "🎯",
+    icon: "◎",
   },
   {
     label: "Find Jobs",
     path: "/jobs",
-    icon: "🔎",
+    icon: "⌕",
   },
   {
     label: "Applications",
     path: "/applications",
-    icon: "📋",
+    icon: "▤",
   },
   {
     label: "Action Required",
     path: "/action-required",
-    icon: "⚠️",
+    icon: "!",
   },
   {
     label: "AI Agent",
     path: "/agent",
-    icon: "🤖",
+    icon: "AI",
   },
   {
     label: "Settings",
     path: "/settings",
-    icon: "⚙️",
+    icon: "⚙",
   },
 ];
 
@@ -108,7 +108,7 @@ export default function UserSidebar() {
                   }`
                 }
               >
-                <span className="user-nav-icon">
+                <span className="user-nav-icon" aria-hidden="true">
                   {item.icon}
                 </span>
 
