@@ -50,3 +50,14 @@ export async function getApplication(
     `/user/applications/${applicationId}`
   );
 }
+
+export async function prepareApplication(
+  jobId: number
+): Promise<UserApplication> {
+  return apiRequest<UserApplication>(
+    `/user/applications/jobs/${jobId}`,
+    {
+      method: "POST",
+    }
+  );
+}
