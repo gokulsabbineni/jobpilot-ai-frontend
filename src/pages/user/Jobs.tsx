@@ -199,13 +199,14 @@ export default function Jobs() {
 
         <button
           type="button"
-          onClick={() => handleSearch()}
+          onClick={handleSearch}
+          disabled={loading}
         >
-          Refresh
+          {loading ? "Searching..." : "Search Jobs"}
         </button>
       </div>
 
-      <div className="user-job-filters">
+      <div className="user-job-filters user-jobs-toolbar">
         <input
           type="search"
           placeholder="Search jobs, companies, or locations..."
@@ -290,7 +291,7 @@ export default function Jobs() {
 
       {!error &&
         filteredJobs.length > 0 && (
-          <div className="user-job-list">
+          <div className="user-job-list user-jobs-grid">
             {filteredJobs.map(
               (job) => {
                 const salary =
