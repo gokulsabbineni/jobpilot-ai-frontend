@@ -3896,3 +3896,481 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+
+
+/* =========================================================
+   FINAL USER UI REFINEMENT
+   Keep the user workspace visually consistent across pages.
+   ========================================================= */
+
+.user-app {
+  min-height: 100vh;
+  background: #f5f7fa;
+}
+
+.user-sidebar {
+  width: 248px;
+  padding: 18px 12px;
+  background: #ffffff;
+  border-right: 1px solid #eaecf0;
+  box-shadow: 4px 0 18px rgba(16, 24, 40, 0.025);
+}
+
+.user-brand {
+  min-height: 58px;
+  padding: 6px 10px 20px;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #f0f2f5;
+}
+
+.user-brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+.user-brand-text strong {
+  font-size: 14px;
+}
+
+.user-brand-text span {
+  font-size: 8px;
+}
+
+.user-section-title {
+  margin: 18px 0 7px;
+  padding: 0 10px;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+
+.user-navigation {
+  gap: 2px;
+}
+
+.user-nav-item {
+  min-height: 44px;
+  gap: 11px;
+  padding: 8px 10px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.user-nav-item.active {
+  box-shadow: 0 2px 6px rgba(16, 24, 40, 0.08);
+}
+
+.user-nav-icon {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.user-nav-item.active .user-nav-icon {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.user-sidebar-bottom {
+  padding-top: 14px;
+}
+
+.user-profile-card {
+  padding: 9px 7px 12px;
+}
+
+.user-profile-avatar {
+  width: 34px;
+  height: 34px;
+}
+
+.user-profile-info strong {
+  font-size: 11px;
+}
+
+.user-profile-info span {
+  font-size: 9px;
+}
+
+.user-logout {
+  min-height: 40px;
+  border-radius: 9px;
+  font-size: 11px;
+}
+
+.user-main {
+  width: calc(100% - 248px);
+  margin-left: 248px;
+  padding: 34px 38px 48px;
+}
+
+.user-page {
+  max-width: 1280px;
+}
+
+.user-page-header {
+  margin-bottom: 24px;
+}
+
+.user-page-header h1 {
+  font-size: 28px;
+  letter-spacing: -0.65px;
+}
+
+.user-page-header p {
+  margin-top: 7px;
+  font-size: 12px;
+}
+
+.user-preferences-layout {
+  grid-template-columns: minmax(0, 1fr) 285px;
+  gap: 16px;
+}
+
+.user-preferences-main {
+  gap: 14px;
+}
+
+.user-preferences-card,
+.user-summary-card,
+.user-summary-help,
+.user-settings-card,
+.user-agent-status-card,
+.user-agent-info-card,
+.user-resume-card {
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.035);
+}
+
+.user-preferences-card {
+  padding: 20px 21px;
+}
+
+.user-card-header {
+  align-items: center;
+  margin-bottom: 17px;
+}
+
+.user-card-header > div:last-child {
+  min-width: 0;
+}
+
+.user-card-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  font-size: 15px;
+}
+
+.user-card-header h2 {
+  font-size: 15px;
+}
+
+.user-card-header p {
+  font-size: 11px;
+}
+
+.user-option-grid {
+  gap: 10px;
+}
+
+.user-option-card {
+  min-height: 68px;
+  padding: 12px;
+}
+
+.user-option-check {
+  width: 21px;
+  height: 21px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: Arial, sans-serif;
+}
+
+.user-option-card.selected .user-option-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-option-content strong {
+  font-size: 11px;
+}
+
+.user-option-content small {
+  font-size: 9px;
+}
+
+.user-input-row input,
+.user-form-field input,
+.user-form-field select {
+  height: 42px;
+  border-radius: 8px;
+}
+
+.user-input-row button {
+  height: 42px;
+  border-radius: 8px;
+}
+
+.user-work-options {
+  gap: 8px;
+}
+
+.user-work-option {
+  min-height: 62px;
+  padding: 11px;
+  border-radius: 8px;
+}
+
+.user-preferences-summary {
+  top: 22px;
+  gap: 12px;
+}
+
+.user-summary-card,
+.user-summary-help {
+  padding: 18px;
+}
+
+.user-preferences-footer {
+  margin-top: 2px;
+  border-radius: 10px;
+}
+
+.user-settings-grid {
+  gap: 16px;
+}
+
+.user-settings-card {
+  padding: 20px;
+}
+
+.user-settings-card h2 {
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.user-settings-card > p {
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+.user-form-grid {
+  gap: 13px;
+}
+
+.user-form-field {
+  margin-top: 13px;
+}
+
+.user-account-info > div {
+  min-height: 43px;
+}
+
+.user-settings-card > button {
+  margin-top: 16px;
+}
+
+.user-settings-danger {
+  background: #fffafa;
+}
+
+.user-action-required-list {
+  gap: 12px;
+}
+
+.user-action-required-card {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.035);
+}
+
+.user-action-required-header {
+  margin-bottom: 15px;
+}
+
+.user-action-required-header h2 {
+  font-size: 15px;
+  line-height: 1.35;
+}
+
+.user-action-required-job {
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  padding: 11px 12px;
+  border: 1px solid #f0f2f5;
+  background: #fafbfc;
+}
+
+.user-action-required-form textarea {
+  min-height: 110px;
+  border-radius: 8px;
+}
+
+.user-action-required-form button {
+  margin-top: 9px;
+}
+
+.user-empty-state {
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 36px 24px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.03);
+}
+
+.user-empty-state h2 {
+  margin: 0 0 7px;
+  font-size: 16px;
+}
+
+.user-empty-state p {
+  max-width: 520px;
+  margin: 0 auto;
+  color: #667085;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.user-agent-status-card {
+  padding: 20px;
+}
+
+.user-agent-actions {
+  align-items: center;
+}
+
+.user-agent-stats {
+  gap: 12px;
+}
+
+.user-agent-stat-card {
+  min-height: 102px;
+  border-radius: 10px;
+}
+
+.user-agent-info-card {
+  padding: 20px;
+}
+
+.user-agent-steps {
+  gap: 9px;
+}
+
+.user-agent-steps > div {
+  min-height: 112px;
+}
+
+.user-job-filters,
+.user-application-filters {
+  border-radius: 10px;
+}
+
+.user-job-card,
+.user-application-card {
+  border-radius: 11px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.025);
+}
+
+.user-job-card {
+  min-height: 275px;
+}
+
+.user-application-card {
+  padding: 18px 19px;
+}
+
+@media (max-width: 1150px) {
+  .user-preferences-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .user-preferences-summary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .user-main {
+    padding: 28px 24px 40px;
+  }
+
+  .user-sidebar {
+    width: 220px;
+  }
+
+  .user-main {
+    width: calc(100% - 220px);
+    margin-left: 220px;
+  }
+}
+
+@media (max-width: 700px) {
+  .user-sidebar {
+    width: 68px;
+    padding: 14px 8px;
+  }
+
+  .user-brand {
+    padding: 5px 0 20px;
+    justify-content: center;
+  }
+
+  .user-brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .user-nav-item {
+    min-height: 42px;
+    justify-content: center;
+    padding: 7px 0;
+  }
+
+  .user-nav-icon {
+    width: 30px;
+    height: 30px;
+    flex-basis: 30px;
+  }
+
+  .user-main {
+    width: calc(100% - 68px);
+    margin-left: 68px;
+    padding: 22px 14px 32px;
+  }
+
+  .user-preferences-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .user-page-header {
+    gap: 15px;
+  }
+
+  .user-page-header h1 {
+    font-size: 24px;
+  }
+
+  .user-preferences-card,
+  .user-settings-card,
+  .user-action-required-card,
+  .user-agent-status-card,
+  .user-agent-info-card {
+    padding: 17px;
+  }
+
+  .user-option-grid {
+    grid-template-columns: 1fr;
+  }
+}
