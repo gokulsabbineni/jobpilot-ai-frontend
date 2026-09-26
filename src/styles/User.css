@@ -3543,3 +3543,38 @@ a {
     padding: 18px;
   }
 }
+
+
+.login-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.login-form-grid > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-switch {
+  margin: 16px 0 0;
+  color: #667085;
+  font-size: 11px;
+  text-align: center;
+}
+
+.auth-switch a {
+  color: #111827;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.auth-switch a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .login-form-grid {
+    grid-template-columns: 1fr;
+  }
+}
