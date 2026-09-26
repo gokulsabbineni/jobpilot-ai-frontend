@@ -5,6 +5,8 @@ import {
 
 import {
   getApplications,
+  runApplication,
+  retryApplication,
   type UserApplication,
 } from "../../api/applications";
 
@@ -83,7 +85,7 @@ export default function Applications() {
   const [error, setError] =
     useState("");
 
-  const [statusFilter, setStatusFilter] =
+  const [busyId, setBusyId] = useState<number | null>(null);\n\n  const [statusFilter, setStatusFilter] =
     useState("ALL");
 
   useEffect(() => {
@@ -108,6 +110,32 @@ export default function Applications() {
       setError(message);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleRun(id: number) {
+    try {
+      setBusyId(id);
+      setError("");
+      await runApplication(id);
+      await loadApplications();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to run application.");
+    } finally {
+      setBusyId(null);
+    }
+  }
+
+  async function handleRetry(id: number) {
+    try {
+      setBusyId(id);
+      setError("");
+      await retryApplication(id);
+      await loadApplications();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to retry application.");
+    } finally {
+      setBusyId(null);
     }
   }
 
@@ -327,17 +355,20 @@ export default function Applications() {
                       </span>
 
                       {application.external_url && (
-                        <button
-                          type="button"
-                          onClick={() =>
-                            window.open(
-                              application.external_url!,
-                              "_blank",
-                              "noopener,noreferrer"
-                            )
-                          }
-                        >
+                        <button type="button" onClick={() => window.open(application.external_url!, "_blank", "noopener,noreferrer")}>
                           View Application
+                        </button>
+                      )}
+
+                      {["READY", "RETRY"].includes(application.status) && (
+                        <button type="button" disabled={busyId === application.id} onClick={() => handleRun(application.id)}>
+                          {busyId === application.id ? "Working..." : "Run Application"}
+                        </button>
+                      )}
+
+                      {application.status === "FAILED" && (
+                        <button type="button" disabled={busyId === application.id} onClick={() => handleRetry(application.id)}>
+                          {busyId === application.id ? "Retrying..." : "Retry"}
                         </button>
                       )}
 
