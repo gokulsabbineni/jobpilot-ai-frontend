@@ -123,15 +123,12 @@ export default function Approvals() {
       />
 
       <div className="approval-summary">
-        <strong>
-          {loading
-            ? "..."
-            : approvals.length}
-        </strong>
-
-        <span>
-          users waiting for approval
-        </span>
+        <div>
+          <span className="admin-card-kicker">Review Queue</span>
+          <strong>{loading ? "..." : approvals.length}</strong>
+          <span>accounts waiting for approval</span>
+        </div>
+        <div className="approval-summary-icon">⏳</div>
       </div>
 
       {error && (
