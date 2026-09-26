@@ -1,50 +1,61 @@
 import { useAuth } from "../../auth/AuthContext";
 
 interface AdminHeaderProps {
-  title: string;
+  title?: string;
   description?: string;
 }
 
 export default function AdminHeader({
-  title,
+  title = "Admin Portal",
   description,
 }: AdminHeaderProps) {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+
+  const fullName = user
+    ? `${user.first_name} ${user.last_name}`.trim()
+    : "Administrator";
 
   return (
-    <header className="admin-header">
-      <div>
-        <h1>{title}</h1>
+    <>
+      <header className="admin-header">
+        <div className="admin-header-title">
+          <h2>JobPilot AI</h2>
 
-        {description && (
-          <p>{description}</p>
-        )}
-      </div>
+          <span>Admin Portal</span>
+        </div>
 
-      <div className="admin-header-right">
-        <button className="admin-notification-button">
-          🔔
-        </button>
+        <div className="admin-header-user">
+          <div className="admin-header-user-info">
+            <strong>
+              {fullName || "Administrator"}
+            </strong>
 
-        <div className="admin-profile">
-          <div className="admin-avatar">
-            {user?.name
-              ?.charAt(0)
-              .toUpperCase() || "A"}
+            <span>
+              {user?.email}
+            </span>
           </div>
 
-          <div>
-            <div className="admin-profile-name">
-              {user?.name ||
-                "JobPilot Admin"}
-            </div>
+          <button
+            type="button"
+            className="admin-logout-button"
+            onClick={logout}
+          >
+            Logout
+          </button>
+        </div>
+      </header>
 
-            <div className="admin-profile-role">
-              Administrator
-            </div>
+      {(title || description) && (
+        <div className="admin-page-header">
+          <div>
+            <h1>{title}</h1>
+
+            {description && (
+              <p>{description}</p>
+            )}
           </div>
         </div>
-      </div>
-    </header>
+      )}
+    </>
   );
 }

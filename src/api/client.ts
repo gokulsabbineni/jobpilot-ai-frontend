@@ -1,6 +1,6 @@
 const API_BASE_URL =
   import.meta.env.VITE_API_BASE_URL ||
-  "http://localhost:8080/api";
+  "http://localhost:8000/api";
 
 export async function apiRequest<T>(
   path: string,
@@ -10,10 +10,18 @@ export async function apiRequest<T>(
 
   const headers = new Headers(options.headers);
 
-  headers.set("Content-Type", "application/json");
+  if (
+    !headers.has("Content-Type") &&
+    !(options.body instanceof FormData)
+  ) {
+    headers.set("Content-Type", "application/json");
+  }
 
   if (token) {
-    headers.set("Authorization", `Bearer ${token}`);
+    headers.set(
+      "Authorization",
+      `Bearer ${token}`
+    );
   }
 
   const response = await fetch(
@@ -25,11 +33,17 @@ export async function apiRequest<T>(
   );
 
   if (!response.ok) {
-    let message = "Request failed";
+    let message =
+      `Request failed with status ${response.status}`;
 
     try {
       const body = await response.json();
-      message = body.message || message;
+
+      message =
+        body.detail ||
+        body.message ||
+        body.error ||
+        message;
     } catch {
       // Ignore invalid JSON response.
     }

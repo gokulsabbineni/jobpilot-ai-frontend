@@ -1,36 +1,34 @@
 import { useAuth } from "../../auth/AuthContext";
 
 export default function AccountPending() {
-  const { user, logout } =
-    useAuth();
+  const { user, logout } = useAuth();
+
+  const fullName = user
+    ? `${user.first_name} ${user.last_name}`.trim()
+    : "there";
 
   return (
-    <div className="pending-page">
-      <div className="pending-card">
-        <div className="pending-icon">
-          ⏳
-        </div>
-
-        <h1>
-          Account Pending Approval
-        </h1>
+    <div className="auth-page">
+      <div className="auth-card">
+        <h1>Account Pending</h1>
 
         <p>
-          Hi {user?.name}, your
-          JobPilot AI account has been
-          submitted successfully.
+          Hi {fullName}, your JobPilot AI
+          account is waiting for administrator
+          approval.
         </p>
 
         <p>
-          An administrator needs to
-          approve your account before
-          you can use the application.
+          You will be able to use the
+          application after your account has
+          been approved.
         </p>
 
         <button
+          type="button"
           onClick={logout}
         >
-          Sign Out
+          Back to Login
         </button>
       </div>
     </div>

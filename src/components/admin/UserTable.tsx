@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 
-import type { User } from "../../types/user";
+import type { AdminUser } from "../../api/admin";
 
 interface UserTableProps {
-  users: User[];
+  users: AdminUser[];
 }
 
 export default function UserTable({
@@ -11,17 +11,60 @@ export default function UserTable({
 }: UserTableProps) {
   const navigate = useNavigate();
 
+  function getFullName(user: AdminUser) {
+    return `${user.first_name} ${user.last_name}`.trim();
+  }
+
+  function formatDate(date?: string) {
+    if (!date) {
+      return "—";
+    }
+
+    return new Date(date).toLocaleDateString();
+  }
+
+  function getStatusClass(status: string) {
+    switch (status) {
+      case "ACTIVE":
+        return "admin-status admin-status-active";
+
+      case "PENDING_APPROVAL":
+        return "admin-status admin-status-pending";
+
+      case "SUSPENDED":
+        return "admin-status admin-status-suspended";
+
+      case "REJECTED":
+        return "admin-status admin-status-rejected";
+
+      default:
+        return "admin-status";
+    }
+  }
+
+  if (users.length === 0) {
+    return (
+      <div className="admin-empty-state">
+        <h3>No users found</h3>
+
+        <p>
+          There are currently no users to display.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-table-container">
       <table className="admin-table">
         <thead>
           <tr>
             <th>User</th>
+            <th>Email</th>
+            <th>Role</th>
             <th>Status</th>
-            <th>Job Type</th>
-            <th>Applications</th>
-            <th>Joined</th>
-            <th />
+            <th>Created</th>
+            <th>Action</th>
           </tr>
         </thead>
 
@@ -29,49 +72,51 @@ export default function UserTable({
           {users.map((user) => (
             <tr key={user.id}>
               <td>
-                <div className="table-user">
-                  <div className="table-avatar">
-                    {user.name.charAt(0)}
+                <div className="admin-user-cell">
+                  <div className="admin-user-avatar">
+                    {user.first_name
+                      ?.charAt(0)
+                      .toUpperCase()}
                   </div>
 
                   <div>
-                    <div className="table-user-name">
-                      {user.name}
-                    </div>
-
-                    <div className="table-user-email">
-                      {user.email}
-                    </div>
+                    <strong>
+                      {getFullName(user)}
+                    </strong>
                   </div>
                 </div>
               </td>
 
               <td>
+                {user.email}
+              </td>
+
+              <td>
+                <span className="admin-role">
+                  {user.role}
+                </span>
+              </td>
+
+              <td>
                 <span
-                  className={`status-badge status-${user.status.toLowerCase()}`}
+                  className={getStatusClass(
+                    user.status
+                  )}
                 >
                   {user.status}
                 </span>
               </td>
 
               <td>
-                {user.jobType ===
-                "FULL_TIME"
-                  ? "Full Time"
-                  : "Contract"}
-              </td>
-
-              <td>
-                {user.applications}
-              </td>
-
-              <td>
-                {user.createdAt}
+                {formatDate(
+                  user.created_at
+                )}
               </td>
 
               <td>
                 <button
-                  className="table-action-button"
+                  type="button"
+                  className="admin-table-action"
                   onClick={() =>
                     navigate(
                       `/admin/users/${user.id}`

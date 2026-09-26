@@ -1,109 +1,146 @@
-import AdminHeader from "../../components/admin/AdminHeader";
-import AdminStatCard from "../../components/admin/AdminStatCard";
-import UserTable from "../../components/admin/UserTable";
+import { useEffect, useState } from "react";
 
-const recentUsers = [
-  {
-    id: "usr_001",
-    name: "John Doe",
-    email: "john.doe@gmail.com",
-    role: "USER" as const,
-    status: "ACTIVE" as const,
-    jobType: "FULL_TIME" as const,
-    applications: 24,
-    createdAt: "Sep 25, 2026",
-  },
-  {
-    id: "usr_002",
-    name: "Sarah Smith",
-    email: "sarah.smith@gmail.com",
-    role: "USER" as const,
-    status: "PENDING" as const,
-    jobType: "CONTRACT" as const,
-    applications: 0,
-    createdAt: "Sep 25, 2026",
-  },
-  {
-    id: "usr_003",
-    name: "Mike Johnson",
-    email: "mike.johnson@gmail.com",
-    role: "USER" as const,
-    status: "ACTIVE" as const,
-    jobType: "FULL_TIME" as const,
-    applications: 47,
-    createdAt: "Sep 24, 2026",
-  },
-];
+import {
+  getAdminDashboard,
+  type AdminDashboard as AdminDashboardData,
+} from "../../api/admin";
+
+import AdminStatCard from "../../components/admin/AdminStatCard";
 
 export default function AdminDashboard() {
+  const [data, setData] =
+    useState<AdminDashboardData | null>(null);
+
+  const [loading, setLoading] =
+    useState(true);
+
+  const [error, setError] =
+    useState("");
+
+  useEffect(() => {
+    loadDashboard();
+  }, []);
+
+  async function loadDashboard() {
+    try {
+      setLoading(true);
+      setError("");
+
+      const result =
+        await getAdminDashboard();
+
+      setData(result);
+    } catch (err) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : "Failed to load dashboard";
+
+      setError(message);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  if (loading) {
+    return (
+      <div className="admin-page">
+        <div className="admin-page-header">
+          <h1>Admin Dashboard</h1>
+
+          <p>
+            Loading JobPilot AI overview...
+          </p>
+        </div>
+
+        <div className="admin-loading">
+          Loading...
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="admin-page">
+        <div className="admin-page-header">
+          <h1>Admin Dashboard</h1>
+        </div>
+
+        <div className="admin-error">
+          {error}
+        </div>
+
+        <button
+          className="admin-primary-button"
+          onClick={loadDashboard}
+        >
+          Try Again
+        </button>
+      </div>
+    );
+  }
+
+  if (!data) {
+    return null;
+  }
+
   return (
     <div className="admin-page">
-      <AdminHeader
-        title="Admin Dashboard"
-        description="Monitor users, applications, AI agents, and system activity."
-      />
+      <div className="admin-page-header">
+        <div>
+          <h1>Admin Dashboard</h1>
 
-      <section className="admin-stats-grid">
+          <p>
+            Monitor JobPilot AI users,
+            applications, and agents.
+          </p>
+        </div>
+
+        <button
+          className="admin-secondary-button"
+          onClick={loadDashboard}
+        >
+          Refresh
+        </button>
+      </div>
+
+      <div className="admin-stats-grid">
         <AdminStatCard
           title="Total Users"
-          value="1,248"
-          description="+42 this month"
-          icon="♙"
+          value={data.total_users}
+          description="All registered users"
+          icon="👥"
         />
 
         <AdminStatCard
           title="Pending Approvals"
-          value="37"
-          description="Requires attention"
-          icon="✓"
+          value={data.pending_approvals}
+          description="Users waiting for approval"
+          icon="⏳"
         />
 
         <AdminStatCard
           title="Active Users"
-          value="1,102"
-          description="88.3% of users"
-          icon="●"
+          value={data.active_users}
+          description="Currently active accounts"
+          icon="✓"
         />
 
         <AdminStatCard
           title="Applications"
-          value="8,421"
-          description="All time"
-          icon="▤"
+          value={data.total_applications}
+          description="Total job applications"
+          icon="💼"
         />
 
         <AdminStatCard
-          title="Running Agents"
-          value="342"
-          description="Currently active"
-          icon="✦"
+          title="Active Agents"
+          value={data.active_agents}
+          description="Currently running agents"
+          icon="🤖"
         />
-
-        <AdminStatCard
-          title="Failed Applications"
-          value="126"
-          description="Requires review"
-          icon="!"
-        />
-      </section>
-
-      <section className="admin-section">
-        <div className="admin-section-header">
-          <div>
-            <h2>
-              Recent Users
-            </h2>
-
-            <p>
-              Recently registered JobPilot AI users.
-            </p>
-          </div>
-        </div>
-
-        <UserTable
-          users={recentUsers}
-        />
-      </section>
+      </div>
     </div>
   );
 }
