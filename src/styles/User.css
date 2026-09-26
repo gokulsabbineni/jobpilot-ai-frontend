@@ -4726,6 +4726,29 @@ a {
   font-size: 9px !important;
 }
 
+/* Find Jobs: clean descriptions and separated actions */
+.user-job-description {
+  color: #667085;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+}
+
+.user-job-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 18px;
+}
+
+.user-job-actions button {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
 /* Find Jobs: stable grid and search/filter alignment */
 .user-jobs-page {
   width: 100%;
