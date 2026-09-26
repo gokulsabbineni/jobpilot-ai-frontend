@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import {
   getAdminUsers,
   approveUserAgain,
+  rejectUserFromUsers,
   type AdminUser,
 } from "../../api/admin";
 
@@ -56,7 +57,37 @@ export default function Users() {
       setError(
         err instanceof Error
           ? err.message
-          : "Failed to approve user again."
+          : "Failed to approve user."
+      );
+    } finally {
+      setProcessingId(null);
+    }
+  }
+
+  async function handleReject(id: number) {
+    const user = users.find((item) => item.id === id);
+    const name = user
+      ? `${user.first_name} ${user.last_name}`.trim()
+      : "this user";
+
+    if (
+      !window.confirm(
+        `Reject ${name}'s account? They will lose access to JobPilot AI until an administrator approves them again.`
+      )
+    ) {
+      return;
+    }
+
+    try {
+      setProcessingId(id);
+      setError("");
+      await rejectUserFromUsers(id);
+      await loadUsers();
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to reject user."
       );
     } finally {
       setProcessingId(null);
@@ -99,6 +130,7 @@ export default function Users() {
         <UserTable
           users={users}
           onApproveAgain={handleApproveAgain}
+          onReject={handleReject}
           processingId={processingId}
         />
       )}
