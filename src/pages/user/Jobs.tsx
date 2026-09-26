@@ -8,6 +8,8 @@ import {
   type UserJob,
 } from "../../api/jobs";
 
+import { prepareApplication } from "../../api/applications";
+
 export default function Jobs() {
   const [jobs, setJobs] =
     useState<UserJob[]>([]);
@@ -26,6 +28,9 @@ export default function Jobs() {
 
   const [remoteOnly, setRemoteOnly] =
     useState(false);
+
+  const [preparingJobId, setPreparingJobId] =
+    useState<number | null>(null);
 
   useEffect(() => {
     loadJobs();
@@ -95,6 +100,23 @@ export default function Jobs() {
         (letter: string) =>
           letter.toUpperCase()
       );
+  }
+
+  async function handlePrepareApplication(jobId: number) {
+    try {
+      setPreparingJobId(jobId);
+      setError("");
+      await prepareApplication(jobId);
+      window.location.href = "/applications";
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to prepare the application."
+      );
+    } finally {
+      setPreparingJobId(null);
+    }
   }
 
   function formatPostedDate(
@@ -343,6 +365,18 @@ export default function Jobs() {
                     </div>
 
                     <div className="user-job-actions">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          handlePrepareApplication(job.id)
+                        }
+                        disabled={preparingJobId === job.id}
+                      >
+                        {preparingJobId === job.id
+                          ? "Preparing..."
+                          : "Prepare Application"}
+                      </button>
+
                       <button
                         type="button"
                         onClick={() =>
