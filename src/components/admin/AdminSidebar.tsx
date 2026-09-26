@@ -13,17 +13,17 @@ const sections = [
       {
         label: "Dashboard",
         path: "/admin",
-        icon: "⌂",
+        icon: "🏠",
       },
       {
         label: "Users",
         path: "/admin/users",
-        icon: "♙",
+        icon: "👥",
       },
       {
         label: "Pending Approvals",
         path: "/admin/approvals",
-        icon: "✓",
+        icon: "⏳",
       },
     ],
   },
@@ -35,7 +35,7 @@ const sections = [
       {
         label: "All Applications",
         path: "/admin/applications",
-        icon: "▤",
+        icon: "📋",
       },
     ],
   },
@@ -47,7 +47,7 @@ const sections = [
       {
         label: "Agent Activity",
         path: "/admin/agents",
-        icon: "✦",
+        icon: "🤖",
       },
     ],
   },
@@ -59,12 +59,12 @@ const sections = [
       {
         label: "Audit Logs",
         path: "/admin/audit-logs",
-        icon: "◷",
+        icon: "🧾",
       },
       {
         label: "Settings",
         path: "/admin/settings",
-        icon: "⚙",
+        icon: "⚙️",
       },
     ],
   },
