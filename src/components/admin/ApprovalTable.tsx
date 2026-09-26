@@ -1,100 +1,163 @@
-interface Approval {
-    id: string;
-    name: string;
-    email: string;
-    jobType: string;
-    registeredAt: string;
+import type { AdminApproval } from "../../api/admin";
+
+interface ApprovalTableProps {
+  approvals: AdminApproval[];
+
+  onApprove: (
+    id: number
+  ) => void;
+
+  onReject: (
+    id: number
+  ) => void;
+
+  processingId: number | null;
+}
+
+export default function ApprovalTable({
+  approvals,
+  onApprove,
+  onReject,
+  processingId,
+}: ApprovalTableProps) {
+  function getFullName(
+    approval: AdminApproval
+  ) {
+    return `${approval.first_name} ${approval.last_name}`.trim();
   }
-  
-  interface ApprovalTableProps {
-    approvals: Approval[];
-    onApprove: (
-      id: string
-    ) => void;
-    onReject: (
-      id: string
-    ) => void;
+
+  function formatDate(
+    date?: string
+  ) {
+    if (!date) {
+      return "—";
+    }
+
+    return new Date(
+      date
+    ).toLocaleString();
   }
-  
-  export default function ApprovalTable({
-    approvals,
-    onApprove,
-    onReject,
-  }: ApprovalTableProps) {
+
+  if (approvals.length === 0) {
     return (
-      <div className="admin-table-container">
-        <table className="admin-table">
-          <thead>
-            <tr>
-              <th>User</th>
-              <th>Job Type</th>
-              <th>Registered</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-  
-          <tbody>
-            {approvals.map(
-              (approval) => (
-                <tr key={approval.id}>
+      <div className="admin-empty-state">
+        <h2>
+          No Pending Approvals
+        </h2>
+
+        <p>
+          There are currently no users
+          waiting for approval.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="admin-table-container">
+      <table className="admin-table">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Status</th>
+            <th>Registered</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {approvals.map(
+            (approval) => {
+              const fullName =
+                getFullName(
+                  approval
+                );
+
+              const isProcessing =
+                processingId ===
+                approval.id;
+
+              return (
+                <tr
+                  key={
+                    approval.id
+                  }
+                >
                   <td>
                     <div className="table-user">
                       <div className="table-avatar">
-                        {approval.name.charAt(
-                          0
-                        )}
+                        {approval.first_name
+                          ?.charAt(0)
+                          .toUpperCase()}
                       </div>
-  
+
                       <div>
                         <div className="table-user-name">
-                          {approval.name}
+                          {fullName}
                         </div>
-  
+
                         <div className="table-user-email">
                           {approval.email}
                         </div>
                       </div>
                     </div>
                   </td>
-  
+
                   <td>
-                    {approval.jobType}
+                    <span className="admin-status admin-status-pending">
+                      {approval.status}
+                    </span>
                   </td>
-  
+
                   <td>
-                    {approval.registeredAt}
+                    {formatDate(
+                      approval.created_at
+                    )}
                   </td>
-  
+
                   <td>
                     <div className="approval-actions">
                       <button
+                        type="button"
                         className="approve-button"
+                        disabled={
+                          isProcessing
+                        }
                         onClick={() =>
                           onApprove(
                             approval.id
                           )
                         }
                       >
-                        Approve
+                        {isProcessing
+                          ? "Processing..."
+                          : "Approve"}
                       </button>
-  
+
                       <button
+                        type="button"
                         className="reject-button"
+                        disabled={
+                          isProcessing
+                        }
                         onClick={() =>
                           onReject(
                             approval.id
                           )
                         }
                       >
-                        Reject
+                        {isProcessing
+                          ? "Processing..."
+                          : "Reject"}
                       </button>
                     </div>
                   </td>
                 </tr>
-              )
-            )}
-          </tbody>
-        </table>
-      </div>
-    );
-  }
+              );
+            }
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+}

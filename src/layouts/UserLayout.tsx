@@ -1,6 +1,10 @@
-import { Outlet } from "react-router-dom";
+import {
+  Outlet,
+} from "react-router-dom";
 
 import UserSidebar from "../components/user/UserSidebar";
+
+import "../styles/User.css";
 
 export default function UserLayout() {
   return (

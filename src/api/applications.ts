@@ -1,40 +1,52 @@
-import type {
-    JobApplication,
-  } from "../types/application";
-  
-  export async function getApplications(): Promise<
-    JobApplication[]
-  > {
-    return [
-      {
-        id: "app_001",
-        userId: "user_001",
-        company: "Google",
-        position: "Software Engineer",
-        location: "Mountain View, CA",
-        status: "APPLIED",
-        appliedAt: "Sep 24, 2026",
-        updatedAt: "Sep 24, 2026",
-      },
-      {
-        id: "app_002",
-        userId: "user_001",
-        company: "Microsoft",
-        position: "Backend Engineer",
-        location: "Remote",
-        status: "INTERVIEW",
-        appliedAt: "Sep 21, 2026",
-        updatedAt: "Sep 25, 2026",
-      },
-      {
-        id: "app_003",
-        userId: "user_001",
-        company: "Amazon",
-        position: "Software Development Engineer",
-        location: "Seattle, WA",
-        status: "ACTION_REQUIRED",
-        appliedAt: "Sep 20, 2026",
-        updatedAt: "Sep 25, 2026",
-      },
-    ];
-  }
+import { apiRequest } from "./client";
+
+export interface UserApplication {
+  id: number;
+
+  user_id: number;
+
+  job_id: number;
+
+  status: string;
+
+  match_score?: number | null;
+
+  external_url?: string | null;
+
+  submitted_at?: string | null;
+
+  created_at?: string | null;
+
+  updated_at?: string | null;
+
+  job: {
+    id: number;
+    company: string;
+    title: string;
+    description?: string | null;
+    location?: string | null;
+    job_type?: string | null;
+    remote?: boolean;
+    salary_min?: number | null;
+    salary_max?: number | null;
+    url: string;
+    source?: string | null;
+    posted_at?: string | null;
+  };
+}
+
+export async function getApplications(): Promise<
+  UserApplication[]
+> {
+  return apiRequest<UserApplication[]>(
+    "/user/applications"
+  );
+}
+
+export async function getApplication(
+  applicationId: number
+): Promise<UserApplication> {
+  return apiRequest<UserApplication>(
+    `/user/applications/${applicationId}`
+  );
+}

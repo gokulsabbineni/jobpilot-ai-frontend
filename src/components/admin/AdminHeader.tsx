@@ -9,29 +9,52 @@ export default function AdminHeader({
   title = "Admin Portal",
   description,
 }: AdminHeaderProps) {
-  const { user, logout } = useAuth();
+  const {
+    user,
+    logout,
+  } = useAuth();
 
   const fullName = user
     ? `${user.first_name} ${user.last_name}`.trim()
     : "Administrator";
 
+  const initials =
+    fullName
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map(
+        (part) =>
+          part.charAt(0).toUpperCase()
+      )
+      .join("") || "AD";
+
   return (
     <>
       <header className="admin-header">
         <div className="admin-header-title">
-          <h2>JobPilot AI</h2>
+          <h2>
+            JobPilot AI
+          </h2>
 
-          <span>Admin Portal</span>
+          <span>
+            Admin Console
+          </span>
         </div>
 
         <div className="admin-header-user">
+          <div className="admin-header-avatar">
+            {initials}
+          </div>
+
           <div className="admin-header-user-info">
             <strong>
               {fullName || "Administrator"}
             </strong>
 
             <span>
-              {user?.email}
+              {user?.email ||
+                "Administrator account"}
             </span>
           </div>
 
@@ -40,7 +63,7 @@ export default function AdminHeader({
             className="admin-logout-button"
             onClick={logout}
           >
-            Logout
+            Sign Out
           </button>
         </div>
       </header>
@@ -48,10 +71,14 @@ export default function AdminHeader({
       {(title || description) && (
         <div className="admin-page-header">
           <div>
-            <h1>{title}</h1>
+            <h1>
+              {title}
+            </h1>
 
             {description && (
-              <p>{description}</p>
+              <p>
+                {description}
+              </p>
             )}
           </div>
         </div>
