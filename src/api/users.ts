@@ -105,3 +105,9 @@ export async function uploadUserResume(
     }
   );
 }
+
+export async function deleteUserResume(): Promise<void> {
+  await apiRequest("/user/resume", {
+    method: "DELETE",
+  });
+}
