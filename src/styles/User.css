@@ -2464,6 +2464,475 @@ a {
 }
 
 /* =========================================================
+   RESUME
+   ========================================================= */
+
+.user-resume-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 0.9fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.user-resume-card {
+  padding: 22px;
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.025);
+}
+
+.user-resume-card > h2 {
+  margin: 0 0 7px;
+  color: #101828;
+  font-size: 16px;
+  line-height: 1.3;
+}
+
+.user-resume-card > p {
+  margin: 0;
+  color: #667085;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.user-resume-current {
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  background: #f9fafb;
+}
+
+.user-resume-current-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.user-resume-file {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.user-resume-file-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.user-resume-file-info {
+  min-width: 0;
+}
+
+.user-resume-file-name {
+  overflow: hidden;
+  color: #101828;
+  font-size: 12px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.user-resume-file-date {
+  margin-top: 4px;
+  color: #98a2b3;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.user-resume-upload-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 220px;
+  margin-top: 16px;
+  padding: 28px 20px;
+  border: 1px dashed #cfd4dc;
+  border-radius: 11px;
+  background: #fbfcfd;
+  text-align: center;
+}
+
+.user-resume-upload-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: #f2f4f7;
+  color: #344054;
+}
+
+.user-resume-upload-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.user-resume-upload-area h3 {
+  margin: 0;
+  color: #101828;
+  font-size: 14px;
+}
+
+.user-resume-upload-area p {
+  margin: 6px 0 0;
+  color: #98a2b3;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.user-resume-upload-button {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 14px;
+  padding: 0 15px;
+  border: 1px solid #111827;
+  border-radius: 8px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.user-resume-upload-button:hover:not(:disabled) {
+  background: #1f2937;
+}
+
+.user-resume-file-input {
+  display: none;
+}
+
+.user-resume-preview {
+  margin-top: 18px;
+  padding: 16px;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.user-resume-preview h3 {
+  margin: 0 0 10px;
+  color: #101828;
+  font-size: 13px;
+}
+
+.user-resume-preview pre {
+  max-height: 360px;
+  margin: 0;
+  padding: 14px;
+  overflow: auto;
+  border-radius: 8px;
+  background: #f9fafb;
+  color: #475467;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.user-resume-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.user-resume-info-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #475467;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.user-resume-info-list svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: #344054;
+}
+
+.user-resume-card .user-status {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   PAGE ACTION BUTTONS
+   ========================================================= */
+
+.user-page-header > button,
+.user-page > button {
+  min-height: 40px;
+  flex-shrink: 0;
+  padding: 0 15px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.user-page-header > button:hover:not(:disabled),
+.user-page > button:hover:not(:disabled) {
+  border-color: #98a2b3;
+  background: #f9fafb;
+}
+
+/* =========================================================
+   JOBS
+   ========================================================= */
+
+.user-job-filters {
+  flex-wrap: wrap;
+}
+
+.user-job-filters input[type="search"] {
+  min-width: 220px;
+}
+
+.user-job-filters select {
+  min-width: 145px;
+}
+
+.user-job-filters label {
+  min-height: 38px;
+  padding: 0 4px;
+  white-space: nowrap;
+}
+
+.user-job-filters label input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #111827;
+}
+
+.user-job-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.user-job-actions button,
+.user-application-actions button {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid #111827;
+  border-radius: 7px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.user-job-actions button:hover,
+.user-application-actions button:hover {
+  background: #1f2937;
+}
+
+.user-job-card > div:first-child {
+  min-width: 0;
+}
+
+.user-job-card h2 {
+  overflow-wrap: anywhere;
+}
+
+.user-job-card p:last-child {
+  color: #667085;
+}
+
+.user-job-card strong {
+  color: #344054;
+}
+
+.user-job-meta span {
+  white-space: nowrap;
+}
+
+/* =========================================================
+   APPLICATIONS
+   ========================================================= */
+
+.user-application-filters {
+  padding: 12px 14px;
+  border: 1px solid #e4e7ec;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.user-application-filters select {
+  background: #ffffff;
+  color: #344054;
+  outline: none;
+}
+
+.user-application-filters select:focus {
+  border-color: #98a2b3;
+  box-shadow: 0 0 0 3px rgba(16, 24, 40, 0.05);
+}
+
+.user-application-card {
+  align-items: flex-start;
+}
+
+.user-application-card > div:first-child {
+  min-width: 0;
+  flex: 1;
+}
+
+.user-application-card h2 {
+  overflow-wrap: anywhere;
+}
+
+.user-application-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.user-application-dates p {
+  margin: 0;
+  color: #98a2b3;
+  font-size: 9px;
+}
+
+.user-application-actions {
+  min-width: 130px;
+}
+
+.user-application-status {
+  white-space: nowrap;
+}
+
+/* =========================================================
+   PREFERENCES ICONS
+   ========================================================= */
+
+.user-card-icon {
+  flex-shrink: 0;
+}
+
+.user-card-icon svg,
+.user-alert-icon svg,
+.user-summary-help-icon svg,
+.user-summary-icon svg {
+  width: 17px;
+  height: 17px;
+}
+
+.user-alert-icon,
+.user-summary-help-icon {
+  font-size: 0;
+}
+
+.user-summary-icon {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   RESPONSIVE PAGE FIXES
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .user-resume-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .user-job-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 850px) {
+  .user-job-list {
+    grid-template-columns: 1fr;
+  }
+
+  .user-application-card {
+    flex-direction: column;
+  }
+
+  .user-application-actions {
+    width: 100%;
+    min-width: 0;
+    align-items: flex-start;
+  }
+
+  .user-application-actions button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 700px) {
+  .user-page-header {
+    gap: 15px;
+  }
+
+  .user-page-header > button,
+  .user-page > button {
+    width: 100%;
+  }
+
+  .user-resume-card {
+    padding: 18px;
+  }
+
+  .user-resume-current-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .user-job-filters {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .user-job-filters input[type="search"],
+  .user-job-filters select,
+  .user-job-filters label {
+    width: 100%;
+  }
+
+  .user-application-filters {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .user-application-filters select {
+    width: 100%;
+  }
+}
+
+/* =========================================================
    EMPTY STATES
    ========================================================= */
 
