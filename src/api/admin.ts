@@ -183,6 +183,17 @@ export async function approveUserAgain(
   );
 }
 
+export async function rejectUserFromUsers(
+  userId: number
+) {
+  return apiRequest(
+    `/admin/users/${userId}/reject`,
+    {
+      method: "POST",
+    }
+  );
+}
+
 export async function getAdminApplications(): Promise<
   AdminApplication[]
 > {
