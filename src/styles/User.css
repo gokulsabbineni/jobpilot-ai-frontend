@@ -4571,3 +4571,214 @@ a {
   border-right: 1.5px solid currentColor;
   transform: rotate(45deg);
 }
+
+
+/* Settings: aligned personal information form */
+.user-settings-grid {
+  align-items: start;
+}
+.user-settings-card {
+  min-width: 0;
+}
+.user-settings-card .user-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+.user-settings-card .user-form-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.user-settings-card .user-form-field label {
+  display: block;
+  min-height: 17px;
+  margin-bottom: 7px;
+  line-height: 1.4;
+}
+.user-settings-card .user-form-field input {
+  width: 100%;
+  box-sizing: border-box;
+}
+.user-settings-card .user-form-field p {
+  margin: 7px 0 0;
+}
+.user-account-info > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 16px;
+}
+.user-account-info > div + div {
+  border-top: 1px solid #f0f2f5;
+}
+
+/* Action Required: cleaner task/response panel */
+.user-action-required-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e4e7ec;
+}
+.user-action-required-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: #f79009;
+}
+.user-action-required-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+.user-action-required-type {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #fff7ed;
+  color: #b54708;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .35px;
+  text-transform: uppercase;
+}
+.user-action-required-header h2 {
+  margin: 8px 0 0;
+}
+.user-status-warning,
+.user-status-success {
+  flex: 0 0 auto;
+  padding: 5px 9px;
+  border-radius: 999px;
+  font-size: 9px;
+  font-weight: 800;
+}
+.user-status-warning {
+  background: #fff7ed;
+  color: #b54708;
+}
+.user-status-success {
+  background: #ecfdf3;
+  color: #027a48;
+}
+.user-action-required-form {
+  margin-top: 18px;
+  padding: 15px;
+  border: 1px solid #eaecf0;
+  border-radius: 10px;
+  background: #fafbfc;
+}
+.user-action-required-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: #344054;
+  font-size: 11px;
+  font-weight: 750;
+}
+.user-action-required-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  background: #ffffff;
+}
+.user-action-required-form button {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 1px solid #111827;
+  border-radius: 8px;
+  background: #111827;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 750;
+}
+.user-action-required-date {
+  color: #98a2b3 !important;
+  font-size: 9px !important;
+}
+
+/* Find Jobs: stable grid and search/filter alignment */
+.user-jobs-page {
+  width: 100%;
+}
+.user-jobs-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px auto auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.user-jobs-toolbar input,
+.user-jobs-toolbar select {
+  width: 100%;
+  height: 42px;
+  box-sizing: border-box;
+}
+.user-jobs-toolbar button {
+  height: 42px;
+  white-space: nowrap;
+}
+.user-jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.user-job-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+.user-job-card > div:first-child {
+  min-width: 0;
+}
+.user-job-card h2,
+.user-job-card p {
+  overflow-wrap: anywhere;
+}
+.user-job-actions {
+  margin-top: auto;
+  padding-top: 16px;
+}
+@media (max-width: 900px) {
+  .user-jobs-toolbar {
+    grid-template-columns: 1fr 1fr;
+  }
+  .user-jobs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 620px) {
+  .user-settings-card .user-form-grid {
+    grid-template-columns: 1fr;
+  }
+  .user-jobs-toolbar {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Job preference autocomplete inputs */
+.user-input-row {
+  align-items: stretch;
+}
+.user-input-row input {
+  min-width: 0;
+}
+.user-input-row button {
+  flex: 0 0 auto;
+  min-width: 104px;
+}
+.user-tag-list {
+  margin-top: 12px;
+}
+
+/* Resume upload/replace actions */
+.user-resume-actions {
+  align-items: stretch;
+}
+.user-resume-upload-button,
+.user-resume-delete-button {
+  min-height: 44px;
+  margin: 0;
+}
