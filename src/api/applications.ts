@@ -19,6 +19,13 @@ export interface UserApplication {
 
   updated_at?: string | null;
 
+  provider?: string | null;
+  attempt_count?: number;
+  max_attempts?: number;
+  last_error?: string | null;
+  next_retry_at?: string | null;
+  started_at?: string | null;
+
   job: {
     id: number;
     company: string;
@@ -60,4 +67,12 @@ export async function prepareApplication(
       method: "POST",
     }
   );
+}
+
+export async function runApplication(applicationId: number): Promise<UserApplication> {
+  return apiRequest<UserApplication>(`/user/applications/${applicationId}/run`, { method: "POST" });
+}
+
+export async function retryApplication(applicationId: number): Promise<UserApplication> {
+  return apiRequest<UserApplication>(`/user/applications/${applicationId}/retry`, { method: "POST" });
 }
