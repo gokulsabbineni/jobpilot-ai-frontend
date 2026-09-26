@@ -4832,3 +4832,39 @@ a {
   min-height: 44px;
   margin: 0;
 }
+
+/* Action Required: direct employer application access */
+.user-action-required-external-action {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 4px;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+.user-action-required-open-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.user-action-required-external-action span {
+  color: #667085;
+  font-size: 13px;
+}
+
+@media (max-width: 620px) {
+  .user-action-required-external-action {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
