@@ -998,3 +998,38 @@ export default function Preferences() {
               together with your resume to identify
               relevant opportunities.
             </p>
+
+            <p>
+              You can change these settings at any
+              time before starting the AI agent.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <div className="user-preferences-footer">
+        <div>
+          <strong>
+            Ready to save your search profile?
+          </strong>
+
+          <span>
+            JobPilot AI will use these settings
+            when finding jobs for you.
+          </span>
+        </div>
+
+        <button
+          type="button"
+          className="user-primary-button"
+          onClick={savePreferences}
+          disabled={saving}
+        >
+          {saving
+            ? "Saving..."
+            : "Save Preferences"}
+        </button>
+      </div>
+    </div>
+  );
+}
