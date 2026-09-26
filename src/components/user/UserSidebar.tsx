@@ -16,27 +16,27 @@ const navigationItems: NavigationItem[] = [
   {
     label: "Dashboard",
     path: "/dashboard",
-    icon: "⌂",
+    icon: "D",
   },
   {
     label: "My Resume",
     path: "/resume",
-    icon: "▤",
+    icon: "R",
   },
   {
     label: "Job Preferences",
     path: "/preferences",
-    icon: "⚙",
+    icon: "P",
   },
   {
     label: "Find Jobs",
     path: "/jobs",
-    icon: "⌕",
+    icon: "J",
   },
   {
     label: "Applications",
     path: "/applications",
-    icon: "✓",
+    icon: "A",
   },
   {
     label: "Action Required",
@@ -46,12 +46,12 @@ const navigationItems: NavigationItem[] = [
   {
     label: "AI Agent",
     path: "/agent",
-    icon: "✦",
+    icon: "AI",
   },
   {
     label: "Settings",
     path: "/settings",
-    icon: "◉",
+    icon: "S",
   },
 ];
 
