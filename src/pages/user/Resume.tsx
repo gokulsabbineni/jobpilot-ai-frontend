@@ -8,6 +8,7 @@ import {
 import {
   getUserResume,
   uploadUserResume,
+  deleteUserResume,
   type UserResume,
 } from "../../api/users";
 
@@ -29,6 +30,9 @@ export default function Resume() {
 
   const [success, setSuccess] =
     useState("");
+
+  const [deleting, setDeleting] =
+    useState(false);
 
   useEffect(() => {
     loadResume();
@@ -143,6 +147,34 @@ export default function Resume() {
       setUploading(false);
 
       event.target.value = "";
+    }
+  }
+
+  async function handleDeleteResume() {
+    const confirmed = window.confirm(
+      "Delete your uploaded resume? This removes the resume from JobPilot AI and you will need to upload it again before the agent can use it."
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setDeleting(true);
+      setError("");
+      setSuccess("");
+
+      await deleteUserResume();
+      setResume(null);
+      setSuccess("Your resume was deleted successfully.");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to delete your resume."
+      );
+    } finally {
+      setDeleting(false);
     }
   }
 
@@ -307,16 +339,27 @@ export default function Resume() {
                   file size 10 MB
                 </p>
 
+                <div className="user-resume-actions">
                 <button
                   type="button"
                   className="user-resume-upload-button"
                   onClick={openFilePicker}
-                  disabled={uploading}
+                  disabled={uploading || deleting}
                 >
                   {uploading
                     ? "Uploading..."
                     : "Upload New Resume"}
                 </button>
+
+                <button
+                  type="button"
+                  className="user-resume-delete-button"
+                  onClick={handleDeleteResume}
+                  disabled={uploading || deleting}
+                >
+                  {deleting ? "Deleting..." : "Delete Resume"}
+                </button>
+              </div>
               </div>
             </>
           ) : (
