@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import {
   getAdminUsers,
+  approveUserAgain,
   type AdminUser,
 } from "../../api/admin";
 
@@ -16,6 +17,9 @@ export default function Users() {
 
   const [error, setError] =
     useState("");
+
+  const [processingId, setProcessingId] =
+    useState<number | null>(null);
 
   useEffect(() => {
     loadUsers();
@@ -39,6 +43,23 @@ export default function Users() {
       setError(message);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function handleApproveAgain(id: number) {
+    try {
+      setProcessingId(id);
+      setError("");
+      await approveUserAgain(id);
+      await loadUsers();
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to approve user again."
+      );
+    } finally {
+      setProcessingId(null);
     }
   }
 
@@ -75,7 +96,11 @@ export default function Users() {
       )}
 
       {!loading && !error && (
-        <UserTable users={users} />
+        <UserTable
+          users={users}
+          onApproveAgain={handleApproveAgain}
+          processingId={processingId}
+        />
       )}
     </div>
   );
