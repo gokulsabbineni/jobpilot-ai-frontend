@@ -1,7 +1,14 @@
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 
 export default function AccountPending() {
+  const navigate = useNavigate();
   const { logout } = useAuth();
+
+  function handleBackToLogin() {
+    logout();
+    navigate("/login", { replace: true });
+  }
 
   return (
     <main className="pending-page">
@@ -27,13 +34,13 @@ export default function AccountPending() {
           </p>
 
           <p className="pending-description">
-            Your JobPilot AI account is waiting for administrator approval.
-            You’ll be able to use the application once your account has been approved.
+            Your account is waiting for administrator approval. You’ll be able to
+            use JobPilot AI once your account has been approved.
           </p>
         </div>
 
         <div className="pending-info">
-          <div className="pending-info-icon">i</div>
+          <div className="pending-info-icon" aria-hidden="true">i</div>
           <div>
             <strong>What happens next?</strong>
             <p>
@@ -46,7 +53,7 @@ export default function AccountPending() {
         <button
           className="pending-login-button"
           type="button"
-          onClick={logout}
+          onClick={handleBackToLogin}
         >
           Back to Login
         </button>
