@@ -3,12 +3,14 @@ import type { AdminUser } from "../../api/admin";
 interface UserTableProps {
   users: AdminUser[];
   onApproveAgain?: (id: number) => void;
+  onReject?: (id: number) => void;
   processingId?: number | null;
 }
 
 export default function UserTable({
   users,
   onApproveAgain,
+  onReject,
   processingId = null,
 }: UserTableProps) {
   function getFullName(user: AdminUser) {
@@ -85,14 +87,27 @@ export default function UserTable({
                 <td>{formatDate(user.created_at)}</td>
                 <td>
                   {user.status === "REJECTED" && onApproveAgain ? (
-                    <button
-                      type="button"
-                      className="admin-table-action"
-                      disabled={isProcessing}
-                      onClick={() => onApproveAgain(user.id)}
-                    >
-                      {isProcessing ? "Approving..." : "Approve Again"}
-                    </button>
+                    <div className="admin-user-actions">
+                      <button
+                        type="button"
+                        className="admin-table-action admin-approve-action"
+                        disabled={isProcessing}
+                        onClick={() => onApproveAgain(user.id)}
+                      >
+                        {isProcessing ? "Processing..." : "Approve"}
+                      </button>
+                    </div>
+                  ) : user.status === "ACTIVE" && onReject ? (
+                    <div className="admin-user-actions">
+                      <button
+                        type="button"
+                        className="admin-table-action admin-reject-action"
+                        disabled={isProcessing}
+                        onClick={() => onReject(user.id)}
+                      >
+                        {isProcessing ? "Processing..." : "Reject"}
+                      </button>
+                    </div>
                   ) : (
                     <span>—</span>
                   )}
