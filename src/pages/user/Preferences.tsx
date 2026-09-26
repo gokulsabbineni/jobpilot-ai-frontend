@@ -558,8 +558,7 @@ export default function Preferences() {
                             title
                           )
                         }
-                        aria-label={`Remove ${title}`}
-                       aria-label="Remove">×</button>
+                        aria-label={`Remove ${title}`}>×</button>
                     </div>
                   )
                 )}
@@ -630,8 +629,7 @@ export default function Preferences() {
                             location
                           )
                         }
-                        aria-label={`Remove ${location}`}
-                       aria-label="Remove">×</button>
+                        aria-label={`Remove ${location}`}>×</button>
                     </div>
                   )
                 )}
