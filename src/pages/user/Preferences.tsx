@@ -376,9 +376,7 @@ export default function Preferences() {
 
       {error && (
         <div className="user-alert user-alert-error">
-          <span className="user-alert-icon">
-            !
-          </span>
+          <span className="user-alert-icon" aria-hidden="true">!</span>
 
           <div>
             <strong>
@@ -394,9 +392,7 @@ export default function Preferences() {
 
       {success && (
         <div className="user-alert user-alert-success">
-          <span className="user-alert-icon">
-            ✓
-          </span>
+          <span className="user-alert-icon" aria-hidden="true">OK</span>
 
           <div>
             <strong>
@@ -509,9 +505,7 @@ export default function Preferences() {
 
           <section className="user-preferences-card">
             <div className="user-card-header">
-              <div className="user-card-icon">
-                ⌕
-              </div>
+              <div className="user-card-icon" aria-hidden="true">R</div>
 
               <div>
                 <h2>
@@ -585,9 +579,7 @@ export default function Preferences() {
 
           <section className="user-preferences-card">
             <div className="user-card-header">
-              <div className="user-card-icon">
-                ⌖
-              </div>
+              <div className="user-card-icon" aria-hidden="true">L</div>
 
               <div>
                 <h2>
@@ -661,9 +653,7 @@ export default function Preferences() {
 
           <section className="user-preferences-card">
             <div className="user-card-header">
-              <div className="user-card-icon">
-                ◉
-              </div>
+              <div className="user-card-icon" aria-hidden="true">W</div>
 
               <div>
                 <h2>
@@ -756,9 +746,7 @@ export default function Preferences() {
 
           <section className="user-preferences-card">
             <div className="user-card-header">
-              <div className="user-card-icon">
-                $
-              </div>
+              <div className="user-card-icon" aria-hidden="true">$</div>
 
               <div>
                 <h2>
@@ -835,9 +823,7 @@ export default function Preferences() {
 
           <section className="user-preferences-card">
             <div className="user-card-header">
-              <div className="user-card-icon">
-                ✓
-              </div>
+              <div className="user-card-icon" aria-hidden="true">AP</div>
 
               <div>
                 <h2>
@@ -927,9 +913,7 @@ export default function Preferences() {
         <aside className="user-preferences-summary">
           <div className="user-summary-card">
             <div className="user-summary-header">
-              <span className="user-summary-icon">
-                ✦
-              </span>
+              <span className="user-summary-icon" aria-hidden="true">SP</span>
 
               <div>
                 <h3>
@@ -1015,9 +999,7 @@ export default function Preferences() {
           </div>
 
           <div className="user-summary-help">
-            <div className="user-summary-help-icon">
-              ?
-            </div>
+            <div className="user-summary-help-icon" aria-hidden="true">?</div>
 
             <h3>
               How this works
