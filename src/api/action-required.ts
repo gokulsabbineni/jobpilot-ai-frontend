@@ -26,6 +26,8 @@ export interface ActionRequiredItem {
 
   completed_at?: string | null;
 
+  application_url?: string | null;
+
   application?: {
     id: number;
 
