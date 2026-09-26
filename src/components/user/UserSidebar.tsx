@@ -16,42 +16,42 @@ const navigationItems: NavigationItem[] = [
   {
     label: "Dashboard",
     path: "/dashboard",
-    icon: "D",
+    icon: "🏠",
   },
   {
     label: "My Resume",
     path: "/resume",
-    icon: "R",
+    icon: "📄",
   },
   {
     label: "Job Preferences",
     path: "/preferences",
-    icon: "P",
+    icon: "🎯",
   },
   {
     label: "Find Jobs",
     path: "/jobs",
-    icon: "J",
+    icon: "🔎",
   },
   {
     label: "Applications",
     path: "/applications",
-    icon: "A",
+    icon: "📋",
   },
   {
     label: "Action Required",
     path: "/action-required",
-    icon: "!",
+    icon: "⚠️",
   },
   {
     label: "AI Agent",
     path: "/agent",
-    icon: "AI",
+    icon: "🤖",
   },
   {
     label: "Settings",
     path: "/settings",
-    icon: "S",
+    icon: "⚙️",
   },
 ];
 
@@ -144,7 +144,7 @@ export default function UserSidebar() {
           onClick={logout}
         >
           <span className="user-logout-icon">
-            ↪
+            🚪
           </span>
 
           <span>
