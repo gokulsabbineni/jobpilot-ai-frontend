@@ -363,6 +363,31 @@ export default function Preferences() {
             opportunities you want to find.
           </p>
         </div>
+              <datalist id="job-title-suggestions">
+                <option value="Golang Developer" />
+                <option value="Software Engineer" />
+                <option value="Backend Engineer" />
+                <option value="Full Stack Developer" />
+                <option value="Java Developer" />
+                <option value="Python Developer" />
+                <option value="DevOps Engineer" />
+                <option value="Cloud Engineer" />
+                <option value="Data Engineer" />
+                <option value="Site Reliability Engineer" />
+              </datalist>
+              <datalist id="location-suggestions">
+                <option value="Dallas, TX" />
+                <option value="Frisco, TX" />
+                <option value="Austin, TX" />
+                <option value="Houston, TX" />
+                <option value="New York, NY" />
+                <option value="New Jersey" />
+                <option value="Chicago, IL" />
+                <option value="Boston, MA" />
+                <option value="Seattle, WA" />
+                <option value="San Francisco, CA" />
+                <option value="Remote" />
+              </datalist>
 
         <button
           type="button"
@@ -517,6 +542,7 @@ export default function Preferences() {
               <input
                 type="text"
                 value={jobTitleInput}
+                list="job-title-suggestions"
                 placeholder="e.g. Golang Developer"
                 list="job-title-suggestions"
                 onChange={(event) =>
@@ -589,6 +615,7 @@ export default function Preferences() {
               <input
                 type="text"
                 value={locationInput}
+                list="location-suggestions"
                 placeholder="e.g. Dallas, TX"
                 list="location-suggestions"
                 onChange={(event) =>
