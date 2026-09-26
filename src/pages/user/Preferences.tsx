@@ -544,7 +544,6 @@ export default function Preferences() {
                 value={jobTitleInput}
                 list="job-title-suggestions"
                 placeholder="e.g. Golang Developer"
-                list="job-title-suggestions"
                 onChange={(event) =>
                   setJobTitleInput(
                     event.target.value
@@ -617,7 +616,6 @@ export default function Preferences() {
                 value={locationInput}
                 list="location-suggestions"
                 placeholder="e.g. Dallas, TX"
-                list="location-suggestions"
                 onChange={(event) =>
                   setLocationInput(
                     event.target.value
