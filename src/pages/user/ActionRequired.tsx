@@ -285,6 +285,20 @@ export default function ActionRequired() {
                   </p>
                 )}
 
+                {action.application_url && (
+                  <div className="user-action-required-external-action">
+                    <a
+                      href={action.application_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="user-action-required-open-button"
+                    >
+                      Open Application Page
+                    </a>
+                    <span>Finish this step directly on the employer's site.</span>
+                  </div>
+                )}
+
                 <div className="user-action-required-form">
                   <label
                     htmlFor={`action-${action.id}`}
