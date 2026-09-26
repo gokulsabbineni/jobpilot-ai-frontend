@@ -10,6 +10,7 @@ interface NavigationItem {
   label: string;
   path: string;
   icon: string;
+  iconClass: string;
 }
 
 const navigationItems: NavigationItem[] = [
@@ -17,41 +18,49 @@ const navigationItems: NavigationItem[] = [
     label: "Dashboard",
     path: "/dashboard",
     icon: "⌂",
+    iconClass: "home",
   },
   {
     label: "My Resume",
     path: "/resume",
     icon: "▣",
+    iconClass: "resume",
   },
   {
     label: "Job Preferences",
     path: "/preferences",
     icon: "◎",
+    iconClass: "preferences",
   },
   {
     label: "Find Jobs",
     path: "/jobs",
     icon: "⌕",
+    iconClass: "jobs",
   },
   {
     label: "Applications",
     path: "/applications",
     icon: "▤",
+    iconClass: "applications",
   },
   {
     label: "Action Required",
     path: "/action-required",
     icon: "!",
+    iconClass: "action",
   },
   {
     label: "AI Agent",
     path: "/agent",
     icon: "AI",
+    iconClass: "agent",
   },
   {
     label: "Settings",
     path: "/settings",
     icon: "⚙",
+    iconClass: "settings",
   },
 ];
 
@@ -108,7 +117,7 @@ export default function UserSidebar() {
                   }`
                 }
               >
-                <span className="user-nav-icon" aria-hidden="true">
+                <span className={`user-nav-icon user-nav-icon-${item.iconClass}`} aria-hidden="true">
                   {item.icon}
                 </span>
 
@@ -143,9 +152,7 @@ export default function UserSidebar() {
           className="user-logout"
           onClick={logout}
         >
-          <span className="user-logout-icon">
-            🚪
-          </span>
+          <span className="user-logout-icon" aria-hidden="true"><span className="logout-glyph" /></span>
 
           <span>
             Sign Out
