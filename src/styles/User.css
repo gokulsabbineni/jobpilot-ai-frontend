@@ -3322,3 +3322,234 @@ a {
     grid-template-columns: 1fr;
   }
 }
+/* =========================================================
+   ACTION / AGENT / SETTINGS POLISH
+   ========================================================= */
+
+.user-error,
+.user-success {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border: 1px solid;
+  border-radius: 9px;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.user-error {
+  border-color: #fecdca;
+  background: #fff7f7;
+  color: #b42318;
+}
+
+.user-success {
+  border-color: #abefc6;
+  background: #f6fef9;
+  color: #067647;
+}
+
+.user-action-required-card {
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.025);
+}
+
+.user-action-required-form button,
+.user-agent-actions button,
+.user-settings-card > button {
+  min-height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  border: 1px solid #111827;
+  border-radius: 8px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.user-action-required-form button:hover:not(:disabled),
+.user-agent-actions button:hover:not(:disabled),
+.user-settings-card > button:hover:not(:disabled) {
+  background: #1f2937;
+}
+
+.user-action-required-form button:disabled,
+.user-agent-actions button:disabled,
+.user-settings-card > button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.user-agent-status-card > div:first-child {
+  min-width: 0;
+}
+
+.user-agent-status-card > div:first-child > p {
+  margin: 0 0 7px;
+  color: #667085;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.user-agent-actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.user-agent-info-card {
+  margin-top: 14px;
+}
+
+.user-agent-step-number {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  border-radius: 7px;
+  background: #f2f4f7;
+  color: #344054;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.user-settings-card {
+  min-width: 0;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.025);
+}
+
+.user-settings-card .user-form-field:first-child {
+  margin-top: 0;
+}
+
+.user-settings-card .user-form-field > p {
+  margin: 6px 0 0;
+  color: #98a2b3;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.user-settings-danger {
+  background: #fffafa;
+}
+
+.user-settings-danger > button {
+  margin-top: 15px;
+  border-color: #b42318;
+  background: #b42318;
+}
+
+.user-settings-danger > button:hover:not(:disabled) {
+  background: #912018;
+}
+
+.user-card-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e4e7ec;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #344054;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+
+.user-summary-icon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e4e7ec;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #344054;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.user-summary-help-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #f2f4f7;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.user-nav-icon {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #e4e7ec;
+  border-radius: 7px;
+  background: #f8fafc;
+  color: #475467;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.2px;
+}
+
+.user-nav-item.active .user-nav-icon {
+  border-color: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.12);
+  color: #ffffff;
+}
+
+.user-logout-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e4e7ec;
+  border-radius: 6px;
+  background: #f8fafc;
+  color: #475467;
+  font-size: 8px;
+  font-weight: 800;
+}
+
+.user-logout:hover .user-logout-icon {
+  background: #ffffff;
+}
+
+@media (max-width: 850px) {
+  .user-action-required-job {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .user-agent-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .user-agent-actions button {
+    flex: 1 1 150px;
+  }
+}
+
+@media (max-width: 700px) {
+  .user-action-required-header {
+    flex-direction: column;
+  }
+
+  .user-action-required-form button {
+    width: 100%;
+  }
+
+  .user-settings-card {
+    padding: 18px;
+  }
+}
