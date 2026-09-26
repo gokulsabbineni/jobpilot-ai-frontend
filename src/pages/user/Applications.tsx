@@ -85,7 +85,9 @@ export default function Applications() {
   const [error, setError] =
     useState("");
 
-  const [busyId, setBusyId] = useState<number | null>(null);\n\n  const [statusFilter, setStatusFilter] =
+  const [busyId, setBusyId] = useState<number | null>(null);
+
+  const [statusFilter, setStatusFilter] =
     useState("ALL");
 
   useEffect(() => {
@@ -227,6 +229,10 @@ export default function Applications() {
           <option value="FAILED">
             Failed
           </option>
+
+          <option value="RETRY">Retry</option>
+
+          <option value="BLOCKED">Blocked</option>
         </select>
       </div>
 
