@@ -5,6 +5,9 @@ export interface AgentStatus {
   status: string;
   jobs_scanned: number;
   applications_made: number;
+  applications_submitted: number;
+  applications_action_required: number;
+  applications_failed: number;
   started_at?: string | null;
   completed_at?: string | null;
   error_message?: string | null;
@@ -17,6 +20,9 @@ export interface AgentActionResponse {
   id?: number;
   jobs_scanned?: number;
   applications_made?: number;
+  applications_submitted?: number;
+  applications_action_required?: number;
+  applications_failed?: number;
   started_at?: string | null;
   completed_at?: string | null;
   error_message?: string | null;
