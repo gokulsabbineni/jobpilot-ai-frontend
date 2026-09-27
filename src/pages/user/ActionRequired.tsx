@@ -56,64 +56,21 @@ export default function ActionRequired() {
     }
   }
 
-  function updateResponse(
-    actionId: number,
-    value: string
-  ) {
-    setResponses(
-      (current) => ({
-        ...current,
-        [actionId]: value,
-      })
-    );
-  }
-
-  async function handleSubmit(
-    action: ActionRequiredItem
-  ) {
-    const response =
-      responses[action.id]?.trim();
-
-    if (!response) {
-      setError(
-        "Please provide a response before submitting."
-      );
-
-      return;
-    }
-
+  async function handleComplete(action: ActionRequiredItem) {
     try {
-      setSubmittingId(
-        action.id
-      );
-
+      setSubmittingId(action.id);
       setError("");
 
-      await completeActionRequired(
-        action.id,
-        {
-          answer: response,
-        }
-      );
-
-      setResponses(
-        (current) => {
-          const next = {
-            ...current,
-          };
-
-          delete next[action.id];
-
-          return next;
-        }
-      );
+      await completeActionRequired(action.id, {
+        answer: "Completed externally by user",
+      });
 
       await loadActions();
     } catch (err) {
       const message =
         err instanceof Error
           ? err.message
-          : "Failed to submit your response.";
+          : "Failed to mark this action as completed.";
 
       setError(message);
     } finally {
@@ -285,7 +242,7 @@ export default function ActionRequired() {
                   </p>
                 )}
 
-                {action.application_url && (
+                {action.application_url ? (
                   <div className="user-action-required-external-action">
                     <a
                       href={action.application_url}
@@ -295,56 +252,39 @@ export default function ActionRequired() {
                     >
                       Open Application Page
                     </a>
-                    <span>Finish this step directly on the employer's site.</span>
+
+                    <button
+                      type="button"
+                      onClick={() => handleComplete(action)}
+                      disabled={submittingId === action.id}
+                      className="user-action-required-complete-button"
+                    >
+                      {submittingId === action.id
+                        ? "Updating..."
+                        : "Mark as Completed"}
+                    </button>
+
+                    <span>
+                      Finish the remaining steps directly on the employer's site, then mark this item as completed.
+                    </span>
+                  </div>
+                ) : (
+                  <div className="user-action-required-form">
+                    <p>
+                      JobPilot needs additional information from you before it can continue.
+                    </p>
+
+                    <button
+                      type="button"
+                      onClick={() => handleComplete(action)}
+                      disabled={submittingId === action.id}
+                    >
+                      {submittingId === action.id
+                        ? "Updating..."
+                        : "Mark as Completed"}
+                    </button>
                   </div>
                 )}
-
-                <div className="user-action-required-form">
-                  <label
-                    htmlFor={`action-${action.id}`}
-                  >
-                    Your Response
-                  </label>
-
-                  <textarea
-                    id={`action-${action.id}`}
-                    rows={5}
-                    placeholder="Enter the information JobPilot AI needs..."
-                    value={
-                      responses[
-                        action.id
-                      ] || ""
-                    }
-                    onChange={(event) =>
-                      updateResponse(
-                        action.id,
-                        event.target.value
-                      )
-                    }
-                    disabled={
-                      submittingId ===
-                      action.id
-                    }
-                  />
-
-                  <button
-                    type="button"
-                    onClick={() =>
-                      handleSubmit(
-                        action
-                      )
-                    }
-                    disabled={
-                      submittingId ===
-                      action.id
-                    }
-                  >
-                    {submittingId ===
-                    action.id
-                      ? "Submitting..."
-                      : "Submit Response"}
-                  </button>
-                </div>
 
                 <p className="user-action-required-date">
                   Created:{" "}
