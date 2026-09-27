@@ -85,8 +85,27 @@ export default function Agent() {
   const [success, setSuccess] =
     useState("");
 
+  const [access, setAccess] = useState<any>(null);
+
+  async function loadAccess() {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_BASE_URL}/user/agent/access`,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token") || ""}`,
+          },
+        }
+      );
+      if (response.ok) setAccess(await response.json());
+    } catch {
+      // Agent status remains usable if access metadata is temporarily unavailable.
+    }
+  }
+
   useEffect(() => {
     loadAgent();
+    loadAccess();
 
     const interval =
       window.setInterval(() => {
@@ -317,6 +336,23 @@ export default function Agent() {
         <div className="user-success">
           {success}
         </div>
+      )}
+
+      {access && (
+        <section className="user-agent-info-card">
+          <h2>{access.capabilities?.tier === "ADVANCED" ? "Advanced Agent" : "Free Agent"}</h2>
+          <p>
+            {access.capabilities?.tier === "ADVANCED"
+              ? "Advanced agent access is enabled for your account by an administrator."
+              : "You are currently using the free agent. Advanced capabilities require administrator access."}
+          </p>
+          <div className="user-agent-steps">
+            <div><strong>Applications today</strong><p>{access.usage?.applications_attempted ?? 0} / {access.limits?.daily_application_limit ?? 0}</p></div>
+            <div><strong>Jobs discovered today</strong><p>{access.usage?.jobs_discovered ?? 0} / {access.limits?.daily_discovery_limit ?? 0}</p></div>
+            <div><strong>Premium crawling</strong><p>{access.capabilities?.premium_crawling_enabled ? "Enabled" : "Not enabled"}</p></div>
+            <div><strong>Cloud browser</strong><p>{access.capabilities?.cloud_browser_enabled ? "Enabled" : "Not enabled"}</p></div>
+          </div>
+        </section>
       )}
 
       <section className="user-agent-status-card">
