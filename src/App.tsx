@@ -24,6 +24,7 @@ import Applications from "./pages/user/Applications";
 import ActionRequired from "./pages/user/ActionRequired";
 import Agent from "./pages/user/Agent";
 import Settings from "./pages/user/Settings";
+import ResumeCheck from "./pages/user/ResumeCheck";
 
 export default function App() {
   return (
@@ -52,6 +53,7 @@ export default function App() {
           <Route element={<UserLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/resume" element={<Resume />} />
+            <Route path="/resume-check" element={<ResumeCheck />} />
             <Route path="/preferences" element={<Preferences />} />
             <Route path="/jobs" element={<Jobs />} />
             <Route path="/applications" element={<Applications />} />
