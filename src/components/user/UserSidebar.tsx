@@ -29,7 +29,7 @@ const navigationItems: NavigationItem[] = [
   {
     label: "Resume Check",
     path: "/resume-check",
-    icon: "▤",
+    icon: "📝",
     iconClass: "resume-check",
   },
   {
