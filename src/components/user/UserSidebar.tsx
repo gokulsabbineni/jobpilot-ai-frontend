@@ -27,6 +27,12 @@ const navigationItems: NavigationItem[] = [
     iconClass: "resume",
   },
   {
+    label: "Resume Check",
+    path: "/resume-check",
+    icon: "✓",
+    iconClass: "resume-check",
+  },
+  {
     label: "Job Preferences",
     path: "/preferences",
     icon: "◎",
