@@ -187,6 +187,60 @@ export default function ResumeCheck() {
             })}
           </section>
 
+          <section className="page-card resume-copy-fixes-panel">
+            <div className="resume-check-panel-heading">
+              <div>
+                <span className="resume-check-card-label">COPY & REPLACE</span>
+                <h2>Make these changes directly</h2>
+              </div>
+              <span className="resume-check-count">
+                {data.analysis.quick_fixes?.length ?? 0} {data.analysis.quick_fixes?.length === 1 ? "edit" : "edits"}
+              </span>
+            </div>
+            <p className="resume-copy-fixes-intro">
+              JobPilot gives you replacement-ready text based on your target role and the facts already detected in your resume. Review each change before using it.
+            </p>
+            <div className="resume-copy-fix-list">
+              {(data.analysis.quick_fixes ?? []).map((fix, index) => (
+                <article className="resume-copy-fix" key={index}>
+                  <div className="resume-copy-fix-header">
+                    <div>
+                      <span className="severity severity-medium">{fix.category}</span>
+                      <h3>{fix.type === "BULLET_REWRITE" ? "Replace this bullet" : fix.type === "SUMMARY_TEMPLATE" ? "Add or replace your summary" : "Review this skill gap"}</h3>
+                    </div>
+                    <button
+                      type="button"
+                      className="resume-copy-button"
+                      onClick={() => navigator.clipboard?.writeText(fix.replacement)}
+                    >
+                      Copy replacement
+                    </button>
+                  </div>
+                  {fix.original && (
+                    <div className="resume-copy-box resume-copy-before">
+                      <span>Current</span>
+                      <p>{fix.original}</p>
+                    </div>
+                  )}
+                  <div className="resume-copy-box resume-copy-after">
+                    <span>Replacement</span>
+                    <p>{fix.replacement}</p>
+                  </div>
+                  <p className="resume-copy-note">{fix.note}</p>
+                </article>
+              ))}
+              {!data.analysis.quick_fixes?.length && (
+                <div className="resume-no-issues">
+                  <span aria-hidden="true">✓</span>
+                  <div>
+                    <strong>Your resume does not need obvious copy-level fixes.</strong>
+                    <p>Keep your content truthful and tailor it to each target role.</p>
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+
           <section className="resume-check-main-grid">
             <article className="page-card resume-check-panel">
               <div className="resume-check-panel-heading">
