@@ -4899,3 +4899,29 @@ a {
 .user-action-required-external-action .user-action-required-open-button:hover {
   background: #f3f4f6;
 }
+
+/* Resume Check sidebar icon: explicit CSS document/check icon.
+   The navigation text remains available for accessibility, while the icon
+   does not depend on the user's emoji font. */
+.user-nav-icon-resume-check {
+  position: relative;
+}
+.user-nav-icon-resume-check::before {
+  content: "";
+  position: absolute;
+  width: 11px;
+  height: 14px;
+  left: 8px;
+  top: 6px;
+  border: 1.7px solid currentColor;
+  border-radius: 2px;
+}
+.user-nav-icon-resume-check::after {
+  content: "✓";
+  position: absolute;
+  left: 10px;
+  top: 7px;
+  font-size: 10px;
+  line-height: 12px;
+  font-weight: 900;
+}
