@@ -93,7 +93,7 @@ export default function Agent() {
         `${import.meta.env.VITE_API_BASE_URL}/user/agent/access`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token") || ""}`,
+            Authorization: `Bearer ${localStorage.getItem("jobpilot_token") || ""}`,
           },
         }
       );
